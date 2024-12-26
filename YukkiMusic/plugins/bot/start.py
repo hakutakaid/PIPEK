@@ -16,7 +16,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
 
 import config
-from config import BANNED_USERS, START_IMG_URL
+from config import BANNED_USERS, START_IMG_URL, LOG_GROUP_ID
 from config.config import OWNER_ID
 from strings import command, get_string
 from YukkiMusic import Platform, app
@@ -138,7 +138,7 @@ async def start_comm(client, message: Message, _):
                 sender_mention = message.from_user.mention
                 sender_name = message.from_user.first_name
                 return await app.send_message(
-                    -1002446100872,
+                    int(LOG_GROUP_ID),
                     f"{message.from_user.mention} Has just started bot to check <code>Sudolist </code>\n\n**User Id:** {sender_id}\n**User Name:** {sender_name}",
                 )
             return
@@ -202,7 +202,7 @@ async def start_comm(client, message: Message, _):
                 sender_id = message.from_user.id
                 sender_name = message.from_user.first_name
                 return await app.send_message(
-                    -1002446100872,
+                    int(LOG_GROUP_ID),
                     f"{message.from_user.mention} Has just started bot ot check <code> Video information  </code>\n\n**User Id:** {sender_id}\n**User Name** {sender_name}",
                 )
     else:
@@ -233,7 +233,7 @@ async def start_comm(client, message: Message, _):
             sender_id = message.from_user.id
             sender_name = message.from_user.first_name
             return await app.send_message(
-                -1002446100872,
+                int(LOG_GROUP_ID),
                 f"{message.from_user.mention} Has started bot. \n\n**User id :** {sender_id}\n**User name:** {sender_name}",
             )
 

@@ -12,6 +12,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import LOG
+from config import LOG_GROUP_ID
 from YukkiMusic import app
 from YukkiMusic.utils.database import delete_served_chat, get_assistant, is_on_off
 
@@ -38,7 +39,7 @@ async def on_bot_added(_, message):
                     f"**Added By:** {message.from_user.mention}"
                 )
                 await app.send_message(
-                    -1002446100872,
+                    int(LOG_GROUP_ID),
                     text=msg,
                     reply_markup=InlineKeyboardMarkup(
                         [
@@ -83,7 +84,7 @@ async def on_bot_kicked(_, message: Message):
             )
 
             await app.send_message(
-                -1002446100872,
+                int(LOG_GROUP_ID),
                 text=left,
                 reply_markup=InlineKeyboardMarkup(
                     [

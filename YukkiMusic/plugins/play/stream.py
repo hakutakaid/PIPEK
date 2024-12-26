@@ -13,6 +13,7 @@ from pyrogram.types import Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
+from config import LOG_GROUP_ID
 from config import BANNED_USERS
 from strings import command
 from YukkiMusic import app
@@ -46,7 +47,7 @@ async def stream_command(
                 "There's an issue with the bot. please report it to my Owner and ask them to check logger group"
             )
             text = "Please Turn on voice chat.. Bot is unable to stream urls.."
-            return await app.send_message(-1002446100872, text)
+            return await app.send_message(int(LOG_GROUP_ID), text)
         except Exception as e:
             return await mystic.edit_text(_["general_3"].format(type(e).__name__))
         await mystic.edit_text(_["str_2"])

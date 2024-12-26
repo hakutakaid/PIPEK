@@ -13,7 +13,7 @@ import sys
 from pyrogram import Client
 from pyrogram.errors import ChatWriteForbidden
 import config
-
+from config import LOG_GROUP_ID
 from ..logging import LOGGER
 
 assistants = []
@@ -43,11 +43,11 @@ class Userbot(Client):
             await client.start()
             assistants.append(index)
             try:
-                await client.send_message(-1002446100872, "Assistant Started")
+                await client.send_message(int(LOG_GROUP_ID), "Assistant Started")
             except ChatWriteForbidden:
                 try:
-                    await client.join_chat(-1002446100872)
-                    await client.send_message(-1002446100872, "Assistant Started")
+                    await client.join_chat(int(LOG_GROUP_ID))
+                    await client.send_message(int(LOG_GROUP_ID), "Assistant Started")
                 except Exception:
                     LOGGER(__name__).error(
                         f"Assistant Account {index} has failed to send message in Loggroup Make sure you have added assistsant in Loggroup."

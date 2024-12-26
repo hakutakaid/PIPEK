@@ -23,6 +23,7 @@ from pytgcalls.types import (
 from pytgcalls.types import StreamAudioEnded
 
 import config
+from config import LOG_GROUP_ID
 from strings import get_string
 from YukkiMusic import LOGGER, Platform, app, userbot
 from YukkiMusic.misc import db
@@ -177,15 +178,15 @@ class Call:
         await assistant.play(chat_id, stream, config=call_config)
 
     async def stream_call(self, link):
-        assistant = await group_assistant(self, -1002446100872)
+        assistant = await group_assistant(self, int(LOG_GROUP_ID))
         call_config = GroupCallConfig(auto_start=False)
         await assistant.play(
-            -1002446100872,
+            int(LOG_GROUP_ID),
             MediaStream(link),
             config=call_config,
         )
         await asyncio.sleep(0.5)
-        await assistant.leave_call(-1002446100872)
+        await assistant.leave_call(int(LOG_GROUP_ID))
 
     async def join_chat(self, chat_id, attempts=1):
         max_attempts = len(assistants) - 1
