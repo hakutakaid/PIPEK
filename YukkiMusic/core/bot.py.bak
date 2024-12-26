@@ -177,7 +177,7 @@ class YukkiBot(Client):
         LOG_GROUP_ID = (
             f"@{-1002446100872}"
             if isinstance(-1002446100872, str)
-            and not -1002446100872.startswith("@")
+            and not LOG_GROUP_ID.startswith("@")
             else -1002446100872
         )
 

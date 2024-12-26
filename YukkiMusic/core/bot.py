@@ -26,9 +26,8 @@ from pyrogram.errors import ChatSendPhotosForbidden
 from pyrogram.errors import ChatWriteForbidden
 from pyrogram.errors import FloodWait
 from pyrogram.errors import MessageIdInvalid
-
 import config
-
+from config import LOG_GROUP_ID
 from ..logging import LOGGER
 
 
@@ -100,7 +99,7 @@ class YukkiBot(Client):
 
         try:
             await self.send_message(
-                -1002446100872,
+                int(LOG_GROUP_ID),
                 text=(
                     f"<u><b>{self.mention} Bot Started :</b></u>\n\n"
                     f"Id : <code>{self.id}</code>\n"
@@ -175,10 +174,10 @@ class YukkiBot(Client):
         )
 
         LOG_GROUP_ID = (
-            f"@{-1002446100872}"
-            if isinstance(-1002446100872, str)
+            f"@{int(LOG_GROUP_ID)}"
+            if isinstance(int(LOG_GROUP_ID), str)
             and not LOG_GROUP_ID.startswith("@")
-            else -1002446100872
+            else int(LOG_GROUP_ID)
         )
 
         for owner_id in config.OWNER_ID:
@@ -198,7 +197,7 @@ class YukkiBot(Client):
         else:
             pass
         try:
-            a = await self.get_chat_member(-1002446100872, self.id)
+            a = await self.get_chat_member(int(LOG_GROUP_ID), self.id)
             if a.status != ChatMemberStatus.ADMINISTRATOR:
                 LOGGER(__name__).error("Please promote bot as admin in logger group")
                 sys.exit()
